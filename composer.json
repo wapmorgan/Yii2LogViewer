@@ -1,4 +1,5 @@
 {
+    "name": "wapmorgan/yii2-log-viewer",
     "bin": ["bin/view"],
     "autoload": {
         "psr-4": {
