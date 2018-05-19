@@ -11,7 +11,7 @@ That's example of yii2 log file process by script:
 vendor/bin/view --no-vars runtime/logs/app.log
 ```
 
-![Image](https://github.com/wapmorgan/Yii2LogViewer/releases/download/0.0.1-alpha/yii2log_viewer.png)
+![Image](https://raw.githubusercontent.com/wapmorgan/Yii2LogViewer/master/doc/yii2log_viewer.png)
 
 **How to use it?**
 Install with composer and run
