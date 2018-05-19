@@ -1,5 +1,7 @@
 # Yii 2 Log Viewer
 
+[![Composer package](http://composer.network/badge/wapmorgan/yii2-log-viewer)](https://packagist.org/packages/wapmorgan/yii2-log-viewer)
+
 **What is it?**
 It's console script that colorizes and filters Yii2 log files (`runtime/logs/app.log`).
 
