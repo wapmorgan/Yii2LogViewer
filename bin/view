@@ -1,0 +1,52 @@
+#!/usr/bin/env php
+<?php
+use wapmorgan\Yii2LogViewer\Colorizer;
+$paths = [
+    // as a root package or phar
+    __DIR__.'/../vendor/autoload.php',
+    // as a dependency from bin
+    __DIR__.'/../autoload.php',
+    // as a dependency from package folder
+    __DIR__.'/../../../autoload.php',
+    ];
+function init_composer(array $paths) {
+    foreach ($paths as $path) {
+        if (file_exists($path)) {
+            require_once $path;
+            return true;
+        }
+    }
+    return false;
+}
+if (!init_composer($paths)) die('Run `composer install` firstly.'.PHP_EOL);
+
+$colorizer = new Colorizer();
+if (in_array('--no-trace', $argv, true)) {
+    unset($argv[array_search('--no-trace', $argv, true)]);
+    $colorizer->suppressTraces();
+}
+
+if (in_array('--no-vars', $argv, true)) {
+    unset($argv[array_search('--no-vars', $argv, true)]);
+    $colorizer->suppressLogVars();
+}
+
+if (count($argv) !== 2) die('Pass a log file name `'.$argv[0].' runtime/logs/app.log`.'.PHP_EOL);
+unset($argv[0]);
+
+$fp = fopen(current($argv), 'r');
+$colorizer->setInputFileResource($fp);
+
+// $tmp_file = tempnam(sys_get_temp_dir(), 'log');
+// $fp2 = fopen($tmp_file, 'w');
+$colorizer->setOutputFileResource(STDOUT);
+
+// echo 'Saving result to '.$tmp_file.PHP_EOL;
+$colorizer->colorize();
+fclose($fp);
+// fclose($fp2);
+
+register_shutdown_function(function () {
+    // if (is_file($tmp_file))
+    //     unlink($tmp_file);
+});

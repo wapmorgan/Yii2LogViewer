@@ -1,0 +1,8 @@
+{
+    "bin": ["bin/view"],
+    "autoload": {
+        "psr-4": {
+            "wapmorgan\\Yii2LogViewer\\": "src/"
+        }
+    }
+}
