@@ -10,7 +10,7 @@ It colorizes all significant parts of log and can filter dumped variables (like 
 
 That's example of yii2 log file process by script:
 ```sh
-vendor/bin/view --no-vars runtime/logs/app.log | less -R
+vendor/bin/yii2log-view --no-vars runtime/logs/app.log | less -R
 ```
 
 ![Image](https://raw.githubusercontent.com/wapmorgan/Yii2LogViewer/master/doc/yii2log_viewer.png)
@@ -18,5 +18,5 @@ vendor/bin/view --no-vars runtime/logs/app.log | less -R
 **How to use it?**
 Install with composer and run
 ```sh
-vendor/bin/view --no-vars runtime/logs/app.log | less -R
+vendor/bin/yii2log-view --no-vars runtime/logs/app.log | less -R
 ```
