@@ -1,5 +1,6 @@
 {
     "name": "wapmorgan/yii2-log-viewer",
+    "license": "GPL-3.0-only",
     "bin": ["bin/yii2log-view"],
     "autoload": {
         "psr-4": {
