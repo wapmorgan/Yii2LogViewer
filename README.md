@@ -18,5 +18,13 @@ How to use it:
 ~/.composer/vendor/bin/yii2log-view --no-vars runtime/logs/app.log | less -R
 ```
 
+Available options:
+```sh
+Usage: bin/yii2log-view [options] log_file
+Options:
+   --no-trace  Suppreses traces in log
+   --no-vars   Suppreses variable values in log
+```
+
 **Example**:
 ![Image](https://raw.githubusercontent.com/wapmorgan/Yii2LogViewer/master/doc/yii2log_viewer.png)
