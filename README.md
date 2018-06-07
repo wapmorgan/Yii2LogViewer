@@ -15,15 +15,24 @@ composer global require wapmorgan/yii2-log-viewer dev-master
 
 How to use it:
 ```sh
-~/.composer/vendor/bin/yii2log-view --no-vars runtime/logs/app.log | less -R
+~/.composer/vendor/bin/yii2log-viewer --no-vars runtime/logs/app.log | less -R
+// or file tail
+tail runtime/logs/app.log | ~/.composer/vendor/bin/yii2log-viewer
 ```
 
 Available options:
 ```sh
-Usage: bin/yii2log-view [options] log_file
+Yii2 Log Colorizer & Filter.
+
+Usage:
+  yii2log-viewer [options] [-f] LOG_FILE
+  yii2log-viewer [options] [-f] [-p]
+
 Options:
-   --no-trace  Suppreses traces in log
-   --no-vars   Suppreses variable values in log
+  -p         Enables reading from pipe, not from file.
+  -f         Enables following text file. To quit Ctrl+C.
+  --no-trace Enables suppressing all back traces.
+  --no-vars  Enables suppressing all exported variables (GET, POST, ...).
 ```
 
 **Example**:

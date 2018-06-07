@@ -1,10 +1,13 @@
 {
     "name": "wapmorgan/yii2-log-viewer",
     "license": "GPL-3.0-only",
-    "bin": ["bin/yii2log-view"],
+    "bin": ["bin/yii2log-viewer"],
     "autoload": {
         "psr-4": {
             "wapmorgan\\Yii2LogViewer\\": "src/"
         }
+    },
+    "require": {
+        "docopt/docopt": "^1.0"
     }
 }

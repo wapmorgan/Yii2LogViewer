@@ -81,10 +81,6 @@ class Colorizer {
 
     protected function colorizeInputToOutput()
     {
-        static $levelsToColorsMap = [
-
-        ];
-
         $yii2_log_signature = $this->getYii2LogMessageSignature();
 
         if ($this->suppressTraces || $this->suppressLogVars)

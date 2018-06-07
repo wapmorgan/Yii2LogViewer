@@ -1,0 +1,73 @@
+#!/usr/bin/env php
+<?php
+use wapmorgan\Yii2LogViewer\Colorizer;
+$paths = [
+    // as a root package or phar
+    __DIR__.'/../vendor/autoload.php',
+    // as a dependency from bin
+    __DIR__.'/../autoload.php',
+    // as a dependency from package folder
+    __DIR__.'/../../../autoload.php',
+    ];
+function init_composer(array $paths) {
+    foreach ($paths as $path) {
+        if (file_exists($path)) {
+            require_once $path;
+            return true;
+        }
+    }
+    return false;
+}
+if (!init_composer($paths)) die('Run `composer install` firstly.'.PHP_EOL);
+
+$doc = <<<DOC
+Yii2 Log Colorizer & Filter.
+
+Usage:
+  yii2log-viewer [options] [-f] LOG_FILE
+  yii2log-viewer [options] [-f] [-p]
+
+Options:
+  -p         Enables reading from pipe, not from file.
+  -f         Enables following text file. To quit Ctrl+C.
+  --no-trace Enables suppressing all back traces.
+  --no-vars  Enables suppressing all exported variables (GET, POST, ...).
+DOC;
+
+$args = Docopt::handle($doc, ['help' => true]);
+
+$colorizer = new Colorizer();
+
+var_dump($args);
+
+if ($args['--no-trace']) {
+    $colorizer->suppressTraces();
+}
+
+if ($args['--no-vars']) {
+    $colorizer->suppressLogVars();
+}
+
+if (empty($args['LOG_FILE'])) {
+    if (!feof(STDIN)) {
+        $r = [STDIN];
+        $w = $e = null;
+        if (stream_select($r, $w, $e, 1)) {
+            $fp = STDIN;
+        }
+    }
+
+    if (!isset($fp))
+        die('Pass a log file name `'.$argv[0].' runtime/logs/app.log`.'.PHP_EOL);
+} else {
+    unset($argv[0]);
+    $fp = fopen($args['LOG_FILE'], 'r');
+}
+
+
+$colorizer->setInputFileResource($fp);
+
+$colorizer->setOutputFileResource(STDOUT);
+
+$colorizer->colorize();
+fclose($fp);
