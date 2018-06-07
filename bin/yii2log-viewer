@@ -38,8 +38,6 @@ $args = Docopt::handle($doc, ['help' => true]);
 
 $colorizer = new Colorizer();
 
-var_dump($args);
-
 if ($args['--no-trace']) {
     $colorizer->suppressTraces();
 }
