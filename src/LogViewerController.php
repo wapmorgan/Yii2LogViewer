@@ -175,7 +175,7 @@ class LogViewerController extends Controller
                 $this->insideLogVar = true;
                 if (!$this->logVars)
                     throw new SkipLineException();
-                return Console::ansiFormat('$'.$logVarStart[1], [onsole::FG_PURPLE])
+                return Console::ansiFormat('$'.$logVarStart[1], [Console::FG_PURPLE])
                     .' = '.Console::ansiFormat($logVarStart[2], [Console::RESET]);
             }
         }
